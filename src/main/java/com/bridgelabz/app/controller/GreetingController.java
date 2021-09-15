@@ -62,28 +62,36 @@ public class GreetingController {
 		return "hello "+show.getName();
 	}
 	
-//	creating method to delete user by id
+//	method to delete user by id
 	@DeleteMapping("/{id}")
 	public String deleteById(@PathVariable int id) {
 		list.remove(id-1);
 		return "delted Id ->"+id;
 	}
 	
-//	creating method for greeting by first name or last name or nothing 
+//	method for greeting by first name or last name or nothing 
 //	also storing message to data base
 	@GetMapping("/msg")
 	public String showMsg(@RequestParam(value = "fName",defaultValue = "") String fName,@RequestParam(value = "lName",defaultValue = "") String lName) {
 		return greetingService.showUserMsg(fName,lName);
 	}
 	
+//	method to get greet msg by id
 	@GetMapping("/msg/{id}")
 	public String getDataById(@PathVariable int id){
 		return greetingService.getDataById(id);
 	}
 	
+//	method to get all greet msg
 	@GetMapping("/msg/all")
 	public ResponseEntity<List<User>> getAllData(){
 		return new ResponseEntity<>(greetingService.getAllData(),HttpStatus.OK);
+	}
+	
+//	method to update greet msg by id
+	@PutMapping("/msg/{id}")
+	public ResponseEntity<User> updateGreetMsgById(@PathVariable int id,@RequestBody User user){
+		return new ResponseEntity<>(greetingService.updateDataById(user,id),HttpStatus.OK);
 	}
 	
 }

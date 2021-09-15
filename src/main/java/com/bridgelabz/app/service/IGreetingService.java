@@ -14,6 +14,8 @@ public interface IGreetingService {
 
 	List<User> getAllData();
 
+	User updateDataById(User user, int id);
+
 
 
 }

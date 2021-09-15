@@ -42,6 +42,7 @@ public class GreetingServiceImpl implements IGreetingService{
 		
 	}
 
+//	get data by id method
 	@Override
 	public String getDataById(int id) {
 		String msg = "";
@@ -54,9 +55,20 @@ public class GreetingServiceImpl implements IGreetingService{
 		return msg;
 	}
 
+//	get all data method
 	@Override
 	public List<User> getAllData() {
 		return greetingRepository.findAll();
+	}
+
+//	msg update by id method
+	@Override
+	public User updateDataById(User user, int id) {
+		List<User> greetingMessages = greetingRepository.findAll();
+		User getObj=greetingMessages.stream().filter(e->e.getId()==id).findFirst().get();
+		getObj.setMessage(user.getMessage());
+		greetingRepository.save(getObj);
+		return getObj;
 	}
 
 	
