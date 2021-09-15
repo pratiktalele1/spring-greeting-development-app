@@ -54,6 +54,11 @@ public class GreetingServiceImpl implements IGreetingService{
 		return msg;
 	}
 
+	@Override
+	public List<User> getAllData() {
+		return greetingRepository.findAll();
+	}
+
 	
 
 

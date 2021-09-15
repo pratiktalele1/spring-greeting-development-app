@@ -12,6 +12,8 @@ public interface IGreetingService {
 
 	String getDataById(int id);
 
+	List<User> getAllData();
+
 
 
 }

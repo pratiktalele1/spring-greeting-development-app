@@ -81,4 +81,9 @@ public class GreetingController {
 		return greetingService.getDataById(id);
 	}
 	
+	@GetMapping("/msg/all")
+	public ResponseEntity<List<User>> getAllData(){
+		return new ResponseEntity<>(greetingService.getAllData(),HttpStatus.OK);
+	}
+	
 }
