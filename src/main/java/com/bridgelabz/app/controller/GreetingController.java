@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,10 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.app.model.User;
+import com.bridgelabz.app.service.IGreetingService;
 
 @RestController
 @RequestMapping("/greet")
 public class GreetingController {
+	
+	@Autowired
+	private IGreetingService greetingService;
 	
 //	creating list for storage
 	private List<User> list=new ArrayList<User>();
@@ -61,6 +66,9 @@ public class GreetingController {
 		return "delted Id ->"+id;
 	}
 	
-	
+	@GetMapping("/msg")
+	public String showMsg() {
+		return greetingService.showUserMsg();
+	}
 	
 }
