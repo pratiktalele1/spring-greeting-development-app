@@ -1,13 +1,28 @@
 package com.bridgelabz.app.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "greetings")
 public class User {
-	private String firstName;
+	private String name;
+	@Id
 	private Long id;
-	public String getFirstName() {
-		return firstName;
+	private String message;
+	
+	public String getMessage() {
+		return message;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 	public Long getId() {
 		return id;
@@ -15,6 +30,7 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
 	
 		
 }

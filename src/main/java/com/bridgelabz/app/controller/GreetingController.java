@@ -41,7 +41,7 @@ public class GreetingController {
 	@GetMapping("/{id}")
 	public String getById(@PathVariable int id) {
 		User user=list.stream().filter(e->e.getId()==id).findFirst().get();
-		return "hello "+user.getFirstName();
+		return "hello "+user.getName();
 	}
 	
 //	creating method to create user
@@ -49,15 +49,15 @@ public class GreetingController {
 	public String create(@RequestBody User user) {
 		user.setId(atomicLong.incrementAndGet());
 		list.add(user);
-		return "hello "+user.getFirstName()+" added";
+		return "hello "+user.getName()+" added";
 	}
 	
 //	creating method to update user by id
 	@PutMapping("/{id}")
 	public String putById(@RequestBody User user,@PathVariable int id) {
 		User show=list.get(id-1);
-		show.setFirstName(user.getFirstName());
-		return "hello "+show.getFirstName();
+		show.setName(user.getName());
+		return "hello "+show.getName();
 	}
 	
 //	creating method to delete user by id
@@ -67,7 +67,8 @@ public class GreetingController {
 		return "delted Id ->"+id;
 	}
 	
-//	creating method for greeting by first name or last name or nothing
+//	creating method for greeting by first name or last name or nothing 
+//	also storing message to data base
 	@GetMapping("/msg")
 	public String showMsg(@RequestParam(value = "fName",defaultValue = "") String fName,@RequestParam(value = "lName",defaultValue = "") String lName) {
 		return greetingService.showUserMsg(fName,lName);
