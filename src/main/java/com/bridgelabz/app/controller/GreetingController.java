@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -72,6 +74,11 @@ public class GreetingController {
 	@GetMapping("/msg")
 	public String showMsg(@RequestParam(value = "fName",defaultValue = "") String fName,@RequestParam(value = "lName",defaultValue = "") String lName) {
 		return greetingService.showUserMsg(fName,lName);
+	}
+	
+	@GetMapping("/msg/{id}")
+	public String getDataById(@PathVariable int id){
+		return greetingService.getDataById(id);
 	}
 	
 }

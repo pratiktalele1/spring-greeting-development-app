@@ -1,5 +1,6 @@
 package com.bridgelabz.app.service;
 
+import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class GreetingServiceImpl implements IGreetingService{
 		if(fName.isEmpty() && lName.isEmpty()) {
 //			storing message to repository
 			user.setId(atomicLong.incrementAndGet());
-			user.setMessage("hello "+fName+" "+lName);
+			user.setMessage("hello "+fName+" "+lName+"World");
 			user.setName(fName+" "+lName);
 			greetingRepository.save(user);
 			return "Hello World";
@@ -40,6 +41,20 @@ public class GreetingServiceImpl implements IGreetingService{
 		}
 		
 	}
+
+	@Override
+	public String getDataById(int id) {
+		String msg = "";
+		List<User> greetingMessages = greetingRepository.findAll();
+		for (User greetingMessage : greetingMessages) {
+			if (greetingMessage.getId() == id) {
+				msg = greetingMessage.getMessage();
+			}
+		}
+		return msg;
+	}
+
+	
 
 
 
