@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bridgelabz.app.model.User;
@@ -66,9 +67,10 @@ public class GreetingController {
 		return "delted Id ->"+id;
 	}
 	
+//	creating method for greeting by first name or last name or nothing
 	@GetMapping("/msg")
-	public String showMsg() {
-		return greetingService.showUserMsg();
+	public String showMsg(@RequestParam(value = "fName",defaultValue = "") String fName,@RequestParam(value = "lName",defaultValue = "") String lName) {
+		return greetingService.showUserMsg(fName,lName);
 	}
 	
 }
