@@ -71,6 +71,15 @@ public class GreetingServiceImpl implements IGreetingService{
 		return getObj;
 	}
 
+//	msg delete by id method
+	@Override
+	public String deleteDataById(int id) {
+		List<User> greetingMessages = greetingRepository.findAll();
+		User getObj=greetingMessages.stream().filter(e->e.getId()==id).findFirst().get();
+		greetingRepository.delete(getObj);
+		return "id ->"+id+"is deleted";
+	}
+
 	
 
 

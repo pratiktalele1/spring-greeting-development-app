@@ -94,4 +94,10 @@ public class GreetingController {
 		return new ResponseEntity<>(greetingService.updateDataById(user,id),HttpStatus.OK);
 	}
 	
+//	method to delete greet msg by id
+	@DeleteMapping("/msg/delete/{id}")
+	public String deleteGreetingById(@PathVariable int id) {
+		return greetingService.deleteDataById(id);
+	}
+	
 }

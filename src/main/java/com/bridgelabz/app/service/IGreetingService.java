@@ -16,6 +16,8 @@ public interface IGreetingService {
 
 	User updateDataById(User user, int id);
 
+	String deleteDataById(int id);
+
 
 
 }
